@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0.js"></script>
+  <script src="js/libs/ember-1.1.1.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+<body>
+
+    <script type="text/x-handlebars" data-template-name="application">
+
+    <div class='navbar'>
+    {{#link-to 'index' class='navbar-brand' }}Home{{/link-to}}
+    {{#link-to 'products' class='navbar-brand' }}Products{{/link-to}}
+    {{#link-to 'about' class='navbar-brand' }}About{{/link-to}}
+    </div>
+
+    <div class='container'> {{outlet}} </div>
+
+     <footer class='footerLogo'>&copy;2016 Pramati Technology Ltd.</div>
+
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+      <h1>Welcome to ABC !! </h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="products">
+
+        <h1>Products</h1>
+            <ul class='list-unstyled col-md-8'>
+                {{#each prod in model}}
+                    <li class ='row'>
+                     <img {{bind-attr src='prod.image'}} class='img-thumbnail col-md-4' />
+                        <div class='col=md=8'>
+                            <h2>{{prod.title}}</h2>
+                            <p class ='product-description'>{{prod.description}}</p>
+                            <p><button class ='btn btn-success'> Buy for ${{prod.price}}</button></p>
+                        </div>
+                     </li><br>
+                {{/each}}
+
+
+                {{#each}}
+                    {{#link-to 'product' this classNames='list-group-item'}}
+                        {{title}}
+                    {{/link-to}}
+                {{/each}}
+            </ul>
+
+    </script>
+
+
+    <script type="text/x-handlebars" data-template-name="product">
+
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+        <img {{bind-attr src='image'}} class='img-thumbnail img-rounded' />
+        <p>${{price}}</p>
+
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="about">
+      <h1>About Pramati</h1>
+      {{dta}}<br>
+      <p>Rendered on : {{time}}</p><br>
+      <img {{bind-attr src='pr_logo'}} alt='Logo'/>
+
+    </script>
+
+</body>
+</html>
