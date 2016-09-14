@@ -83,8 +83,6 @@ App.ProductsDealsRoute = Ember.Route.extend({
 App.ProductDetailsComponent=Ember.Component.extend({
     reviewsCount: Ember.computed.alias('product.reviews.length'),
     hasReviews:function () {
-        console.log("i m here");
-        console.log(this.get('reviewsCount'));
         return this.get('reviewsCount')>0;
     }.property('reviewsCount')
 });
