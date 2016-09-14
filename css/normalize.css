@@ -417,3 +417,31 @@ table {
     position: absolute;
     top :0px;
 }
+
+.nested-list-group{
+    position:absolute;
+    top:60px;
+    left:50px;
+
+}
+
+.single-prod{
+    position:absolute;
+    left:0px;
+    top:30px;
+
+}
+
+.nested-text-muted{
+    position: fixed;
+    top:70px;
+    color: grey;
+}
+
+.underDev{
+    position: fixed;
+    top:70px;
+    font-size: x-large;
+    background-color: orangered;
+    height:470px;
+}
