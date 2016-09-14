@@ -1,167 +1,277 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>EmberJS Demo</title>
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <title>EmberJS Demo</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
 
 
-  <script src="js/libs/jquery-1.9.1.js"></script>
-  <script src="js/libs/handlebars-1.0.0.js"></script>
-  <!--<script src="js/libs/ember-1.1.1.js"></script>-->
+    <script src="js/libs/jquery-1.9.1.js"></script>
+    <script src="js/libs/handlebars-1.0.0.js"></script>
+    <!--<script src="js/libs/ember-1.1.1.js"></script>-->
 
-  <!--<script src="js/libs_backup/handlebars-v1.3.0.js"></script>-->
-  <script src="js/libs_backup/ember.js"></script>
-  <script src="js/libs_backup/ember-data.js"></script>
+    <!--<script src="js/libs_backup/handlebars-v1.3.0.js"></script>-->
+    <script src="js/libs_backup/ember.js"></script>
+    <script src="js/libs_backup/ember-data.js"></script>
 
-  <!--<script src="js/libs_backup1/ember-2.0.1.debug.js"></script>-->
-  <!--<script src="js/libs_backup1/ember-template-compiler-2.0.1.js"></script>-->
+    <!--<script src="js/libs_backup1/ember-2.0.1.debug.js"></script>-->
+    <!--<script src="js/libs_backup1/ember-template-compiler-2.0.1.js"></script>-->
 
-  <script src="js/app.js"></script>
+    <script src="js/app.js"></script>
 </head>
 <body>
 
-    <script type="text/x-handlebars" data-template-name="application">
-        <div class='navbar'>
-            {{#link-to 'index' class='navbar-brand' }}Home{{/link-to}}
-            {{#link-to 'products' class='navbar-brand' }}Products{{/link-to}}
-            {{#link-to 'nestedProducts' class='navbar-brand' }}Nested Products{{/link-to}}
-            {{#link-to 'newProducts' class='navbar-brand' }}New Products{{/link-to}}
-            {{#link-to 'about' class='navbar-brand' }}About{{/link-to}}
+<script type='text/x-handlebars' data-template-name='application'>
+        <div class='navbar navbar-default'>
+             <div class='container'>
+                   {{#link-to 'index' class='navbar-brand'}}
+                    <img src='images/logo-small.png' alt='logo-small' height='34' width='224' />
+                   {{/link-to}}
+                   <div class='navbar-top'>
+                        <ul class='nav navbar-nav navbar-right'>
+                          {{#link-to 'index' tagName='li'}}Home &nbsp{{/link-to}}
+                          {{#link-to 'products' tagName='li'}}Products &nbsp{{/link-to}}
+                          {{#link-to 'contacts' tagName='li'}}Contacts &nbsp{{/link-to}}
+                        </ul>
+                    </div>
+              </div>
         </div>
-        <div class='container'>
+        <div class="container">
             {{outlet}}
         </div>
-         <footer class='footerLogo'>&copy;2016 Imaginea Technology Ltd.</footer>
-    </script>
+        <footer class='container'>
+          <hr />
+          <p class='pull-left'>&copy; 2016 Pramati Technologies</p>
+          <p class='pull-right'>{{#link-to 'credits'}}Credits{{/link-to}}</p>
+        </footer>
 
-    <script type="text/x-handlebars" data-template-name="index">
-        <div class='row1'>
-            <div class='welcome-page col-md-12'>
-              <h1>Welcome to Imaginea Technology !! <br></h1>
-             </div>
+
+
+</script>
+
+<script type='text/x-handlebars' data-template-name='index'>
+        <div class="jumbotron">
+              <h1>Welcome to Fruit Bucket</h1>
+
+              <p class="tagline">
+                    Fresh fruits for all!!!...<br>
+                Powered By:
+                <img {{bind-attr src='logo'}} alt='Logo' />
+              </p>
+              <p>
+                {{#link-to 'products' class='btn btn-primary btn-lg'}}
+                  Browse All {{productsCount}} Items &raquo;
+                {{/link-to}}
+              </p>
         </div>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="products">
-
-        <h1>Products</h1>
-            <ul class='list-unstyled col-md-8'>
-                {{#each prod in model}}
-                    <li class ='row'>
-                     <img {{bind-attr src='prod.image'}} class='img-thumbnail col-md-4' />
-                        <div class='col=md=8'>
-                            <h2>{{prod.title}}</h2>
-                            <p class ='product-description'>{{prod.description}}</p>
-                            <p><button class ='btn btn-success'> Buy for ${{prod.price}}</button></p>
-                        </div>
-                     </li><br>
-                {{/each}}
-
-
-                {{#each}}
-                    {{#link-to 'product' this classNames='list-group-item'}}
-                        {{title}}
-                    {{/link-to}}
-                {{/each}}
-            </ul>
-
-    </script>
-
-
-    <script type="text/x-handlebars" data-template-name="product">
-        <div class='prod'>
-            <h2>{{title}}</h2>
-            <p>{{description}}</p>
-             <img {{bind-attr src='image'}} class='img-thumbnail img-rounded' />
-            <p>${{price}}</p>
-        </div>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="nestedProducts/index">
-        <p class='nested-text-muted'> Choose a product those from the left!</p>
-    </script>
-
-
-    <script type="text/x-handlebars" data-template-name="nestedProducts">
         <div class='row'>
-            <div class ='col-sm-3'>
-                <div class='nested-list-group'>
-                     {{#each}}
-                        {{#link-to 'nestedProduct' this classNames='list-group-item'}}
-                            {{title}}
-                        {{/link-to}}
-                    {{/each}}
-                </div>
+          {{#each onSale}}
+            <div class="col-sm-4">
+              <img {{bind-attr src='image'}} class='img-thumbnail col-sm-5' />
+                  <div class="col-sm-7">
+                    <h2>{{title}}</h2>
+                    <span class="label label-warning">
+                      {{#link-to 'products.onsale'}}On Sale{{/link-to}}
+                    </span>
+                    <p class="product-description">{{description}}</p>
+
+
+                    <p>{{#link-to 'product' this class='btn btn-success'}}
+                      Buy for ${{price}}{{/link-to}}
+                      </p>
+                      {{product-details product=this}}
+                  </div>
             </div>
-            <div class='col-sm-9'>
-                {{outlet}}
-            </div>
+          {{/each}}
         </div>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="nestedProduct">
-        <div class='single-prod'>
-            <h2>{{title}}</h2>
-            <p>{{description}}</p>
-             <img {{bind-attr src='image'}} class='img-thumbnail img-rounded' />
-            <p>${{price}}</p>
-        </div>
-    </script>
+        <p class='pull-right text-muted'>Rendered on {{time}}</p>
 
 
-    <script type="text/x-handlebars" data-template-name="newProducts">
+</script>
+
+<script type='text/x-handlebars' data-template-name='contacts/index'>
         <div class='row'>
-            <div class ='col-sm-3'>
-                <div class='nested-list-group'>
-                     {{#each}}
-                        {{#link-to 'newProduct' this classNames='list-group-item'}}
-                            {{title}}
-                        {{/link-to}}
-                    {{/each}}
-                </div>
-            </div>
-            <div class='col-sm-9'>
-                {{outlet}}
-            </div>
+          <img {{bind-attr src='avatar'}} alt='Avatar' class='img-thumbnail col-sm-4'/>
+          <div class='col-sm-8'>
+            <h1>About The Pramati Technology</h1>
+            <p>Contact {{contactName}} for more info!</p>
+            <p>Current Status: {{open}}.</p>
+          </div>
         </div>
-    </script>
 
-    <script type="text/x-handlebars" data-template-name="newProduct">
-        <div class='single-prod'>
+
+</script>
+
+<script type='text/x-handlebars' data-template-name='credits'>
+        <h1>Thanks for the Help!</h1>
+        <p>This site would not be possible without the hardworking Pramati team!</p>
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='products'>
+        <div class='row list-group-icon'>
+          <div class='col-sm-3'>
+            <div class='list-group'>
+              <!-- Links to Deals and On Sale here -->
+              {{#link-to 'products.deals'}}See all deals{{/link-to}}
+              {{#link-to 'products.onsale'}}See all products on sale{{/link-to}}
+            </div>
+            <div class='list-group-icon'>
+              {{#each}}
+                {{#link-to 'product' this classNames='list-group-item'}}
+                  {{title}}
+                {{/link-to}}
+              {{/each}}
+            </div>
+          </div>
+          <div class='col-sm-9'>
+            {{outlet}}
+          </div>
+        </div>
+
+
+</script>
+
+<script type='text/x-handlebars' data-template-name='products/deals'>
+            <ul class='list-unstyled'>
+          {{#each}}
+            <li class="row">
+              <img {{bind-attr src='image'}} class='img-thumbnail col-sm-5' />
+              <div class="col-sm-7">
+                <h2>{{title}}</h2>
+                <p class="product-description">{{description}}</p>
+                <p>{{#link-to 'product' this class='btn btn-success'}}
+                  Buy for ${{price}}{{/link-to}}</p>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+
+
+</script>
+
+<script type='text/x-handlebars' data-template-name='product'>
+        <div class='row'>
+          <div class='col-sm-7'>
             <h2>{{title}}</h2>
-            <p>{{description}}</p>
-             <img {{bind-attr src='image'}} class='img-thumbnail img-rounded' />
-            <p>${{price}}</p>
-            <h3> Reviews</h3>
+            <h3 class="text-success">${{price}}</h3>
+            <p class="text-muted">{{description}}</p>
+            <p>Finely Artisan by {{#link-to 'contact' artisan}}{{artisan.name}}{{/link-to}}.</p>
+            <h3>Reviews</h3>
             <ul>
-                {{#each reviews}}
-                    <li>{{text}}</li>
-                {{else}}
-                   <li><p class='text-muted'>
-                            <em>No reviews yet. Be the first to write one! </em>
-                        </p>
-                   </li>
-                {{/each}}
+            {{#each reviews}}
+              <li><p>{{text}}</p></li>
+            {{else}}
+              <li><p class='text-muted'><em>No reviews yet. Be the first to write one!</em></p></li>
+            {{/each}}
             </ul>
+          </div>
+          <div class='col-sm-5'>
+            <img {{bind-attr src='image'}} class='img-thumbnail img-rounded'/>
+          </div>
         </div>
-    </script>
 
-    <script type="text/x-handlebars" data-template-name="about">
-        <div class='aboutText'>
-          <h1>About Pramati</h1>
-          {{dta}}<br>
-          <p>Rendered on : {{time}}</p><br>
-          <img {{bind-attr src='pr_logo'}} alt='Logo'/>
-        </div>
-    </script>
 
-    <script type="text/x-handlebars" data-template-name="puc">
-        <div class='underDev col-md-10'>
-            <p> Sorry !! Page Under Construction</p>
+</script>
+
+<script type='text/x-handlebars' data-template-name='products/index'>
+        <h1>Products!</h1>
+        <ul class='list-unstyled'>
+          {{#each}}
+            <li class="row">
+              <img {{bind-attr src='image'}} class='img-thumbnail col-sm-5' />
+              <div class="col-sm-7">
+                <h2>{{title}}</h2>
+                <p class="product-description">{{description}}</p>
+                <p>{{#link-to 'product' this class='btn btn-success'}}
+                  Buy for ${{price}}
+                  {{/link-to}}</p>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='contacts'>
+        <div class='row list-group-icon'>
+          <div class='col-sm-9'>
+            {{outlet}}
+          </div>
+          <div class='col-sm-3'>
+            <div class='list-group'>
+              {{#each}}
+                {{#link-to 'contact' this classNames='list-group-item'}}
+                  {{name}}
+                {{/link-to}}
+              {{/each}}
+            </div>
+          </div>
         </div>
-    </script>
+
+
+</script>
+
+<script type='text/x-handlebars' data-template-name='contact'>
+        <div class='row'>
+          <div class='col-sm-5'>
+            <img {{bind-attr src='avatar' alt='name'}} class='img-thumbnail img-rounded'/>
+          </div>
+          <div class='col-sm-7'>
+            <h2>{{name}}</h2>
+            <p>{{about}}</p>
+            <h3>Products</h3>
+            <ul>
+            {{#each products}}
+              <li>{{#link-to 'product' this}}{{title}}{{/link-to}}</li>
+            {{/each}}
+            </ul>
+          </div>
+        </div>
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="products/onsale">
+        <h1>Products On Sale</h1>
+        <ul class='list-unstyled'>
+          {{#each}}
+            <li class="row">
+              <img {{bind-attr src='image'}} class='img-thumbnail col-sm-5' />
+              <div class="col-sm-7">
+                    <h2>{{title}}</h2>
+                    <p class="product-description">{{description}}</p>
+                    <p>{{#link-to 'product' this class='btn btn-success'}}
+                      Buy for ${{price}}{{/link-to}}
+                      </p>
+
+                        {{product-details product=this tagName='li' classNames='row'}}
+
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="components/product-details">
+
+    {{#if hasReviews}}
+        <p class ='text-muted'> &nbsp Read all reviews ({{reviewsCount}}).</p>
+     {{else}}
+        <p class ='text-muted'> <em> &nbsp No reviews yet!! </em> </p>
+    {{/if}}
+
+
+
+</script>
 </body>
+
 </html>

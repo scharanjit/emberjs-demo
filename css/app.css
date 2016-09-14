@@ -1,0 +1,27 @@
+.navbar {
+    margin-left: 32px;
+    width: 1142px;
+    font-weight: 900;
+}
+
+.list-group-icon {
+    margin-top: 30px;
+}
+
+.navbar-top {
+
+    margin-top: 15px;
+    width: 1108px;
+}
+
+.tagline{
+
+    text-align: right;
+    margin-top:-70px;
+    padding-right:6em;
+
+}
+
+.read-review{
+    background-color: lightgreen;
+}
