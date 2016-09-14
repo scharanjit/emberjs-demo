@@ -447,8 +447,14 @@ table {
 }
 
 .welcome-page{
-    height:470px;
+    height:60px;
     top:30px;
     background-color: lightgoldenrodyellow;
 
+}
+
+.footerLogo{
+    position: fixed;
+    bottom:20px;
+    right:20px;
 }

@@ -29,6 +29,10 @@ App.AboutController=Ember.Controller.extend({            //controller
     }.property()
 });
 
+App.NestedProductsController=Ember.ArrayController.extend({         //to sort the available products
+   sortProperties:['title']
+});
+
 App.ProductsRoute=Ember.Route.extend({          //route  //don't get confused b/w router and route
     model:function(){
         return App.PRODUCTS;                    //rendering model into template
@@ -64,7 +68,6 @@ App.NewProductsRoute=Ember.Route.extend({
 
 App.NewProductRoute=Ember.Route.extend({
     model:function(params){
-        console.log("inside new prod route");
         return  this.store.find('newProduct',params.id);
     }
 });
@@ -78,6 +81,14 @@ App.PRODUCTS=[
         description:'An Apple a day keeps a doc away ..',
         isOnSale:true,
         image:'images/apple.png'
+    },
+    {
+        title:'Dates',
+        price:10,
+        description:'Date date date date',
+        isOnSale:true,
+        image:'images/dates.png'
+
     },
     {
         title:'Banana',
@@ -121,7 +132,18 @@ App.NewProduct.FIXTURES=[
         price:10,
         description:'Minions love bananas..',
         isOnSale:false,
-        image:'images/banana.png'
+        image:'images/banana.png',
+        reviews:[]
+
+    },
+    {
+        id:3,
+        title:'Dates',
+        price:10,
+        description:'Date date date date',
+        isOnSale:true,
+        image:'images/dates.png',
+        reviews:[]
 
     }
 ];
