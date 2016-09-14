@@ -445,3 +445,10 @@ table {
     background-color: orangered;
     height:470px;
 }
+
+.welcome-page{
+    height:470px;
+    top:30px;
+    background-color: lightgoldenrodyellow;
+
+}
