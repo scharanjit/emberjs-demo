@@ -56,12 +56,15 @@ App.NestedProductRoute=Ember.Route.extend({
 
 App.NewProductsRoute=Ember.Route.extend({
     model:function(){
-        return this.store.findAll('newProducts');
+
+        return this.store.findAll('newProduct');
+
     }
 });
 
 App.NewProductRoute=Ember.Route.extend({
     model:function(params){
+        console.log("inside new prod route");
         return  this.store.find('newProduct',params.id);
     }
 });
@@ -86,11 +89,11 @@ App.PRODUCTS=[
     }
 ];
 
-App.ApplicationAdaptor=DS.FixtureAdapter.extend();             //to load records from the memory,also allow us to hard code the data in fixtures for getting started
-// App.ApplicationAdaptor=DS.RESTAdaptor.extend();                //to communicate with HTTP server using JSON
+App.ApplicationAdapter=DS.FixtureAdapter;             //to load records from the memory,also allow us to hard code the data in fixtures for getting started
+// App.ApplicationAdapter=DS.RESTAdaptor.extend();                //to communicate with HTTP server using JSON
 
 
-App.NewProducts=DS.Model.extend({
+App.NewProduct=DS.Model.extend({
     title:DS.attr('string'),
     price:DS.attr('number'),
     description:DS.attr('string'),
@@ -102,7 +105,7 @@ App.NewProducts=DS.Model.extend({
 
 
 //fixture model below
-App.NewProducts.FIXTURES=[
+App.NewProduct.FIXTURES=[
     {
         id:1,                                      //should have a unique id
         title:'Apple',
@@ -126,18 +129,18 @@ App.NewProducts.FIXTURES=[
 App.Review= DS.Model.extend({
     text:DS.attr('string'),
     reviewedAt:DS.attr('date'),
-    newProduct: DS.belongsTo('newProducts')
+    newProduct: DS.belongsTo('newProduct')
 });
 
 App.Review.FIXTURES=[
     {
         id:100,
-        newProducts:1,
+        newProduct:1,
         text:"It is really very fresh and delicious"
     },
     {
         id:101,
-        newProducts:1,
+        newProduct:1,
         text:"Not too much sweet. Overall happy!!"
     }
 ];

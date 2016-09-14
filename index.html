@@ -107,6 +107,7 @@
         </div>
     </script>
 
+
     <script type="text/x-handlebars" data-template-name="newProducts">
         <div class='row'>
             <div class ='col-sm-3'>
@@ -124,25 +125,25 @@
         </div>
     </script>
 
-    <!--<script type="text/x-handlebars" data-template-name="newProduct">-->
-        <!--<div class='single-prod'>-->
-            <!--<h2>{{title}}</h2>-->
-            <!--<p>{{description}}</p>-->
-             <!--<img {{bind-attr src='image'}} class='img-thumbnail img-rounded' />-->
-            <!--<p>${{price}}</p>-->
-            <!--<h3> Reviews</h3>-->
-            <!--<ul>-->
-                <!--{{#each reviews}}-->
-                    <!--<li>{{text}}</li>-->
-                <!--{{else}}-->
-                   <!--<li><p class='text-muted'>-->
-                            <!--<em>No reviews yet. Be the first to write one! </em>-->
-                        <!--</p>-->
-                   <!--</li>-->
-                <!--{{each}}-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</script>-->
+    <script type="text/x-handlebars" data-template-name="newProduct">
+        <div class='single-prod'>
+            <h2>{{title}}</h2>
+            <p>{{description}}</p>
+             <img {{bind-attr src='image'}} class='img-thumbnail img-rounded' />
+            <p>${{price}}</p>
+            <h3> Reviews</h3>
+            <ul>
+                {{#each reviews}}
+                    <li>{{text}}</li>
+                {{else}}
+                   <li><p class='text-muted'>
+                            <em>No reviews yet. Be the first to write one! </em>
+                        </p>
+                   </li>
+                {{/each}}
+            </ul>
+        </div>
+    </script>
 
 
     <script type="text/x-handlebars" data-template-name="about">
