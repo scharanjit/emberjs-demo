@@ -167,7 +167,16 @@
                 {{partial 'reviews'}}
                 {{render 'reviews' reviews}}
             </ul>
+            <div class='new-review'>
+                <h3> Review {{title}}</h3>
+                {{#if text}}
+                    <p class='text-muted'>{{text}}</p>
+                {{/if}}
+                {{textarea valueBinding='text'}}
+                <button {{action 'createReview'}} class='btn-primary'>Review</button>
+             </div>
           </div>
+
           <div class='col-sm-5'>
             <img {{bind-attr src='image'}} class='img-thumbnail img-rounded'/>
           </div>
