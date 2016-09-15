@@ -165,6 +165,7 @@
             <h3>Reviews</h3>
             <ul>
                 {{partial 'reviews'}}
+                {{render 'reviews' reviews}}
             </ul>
           </div>
           <div class='col-sm-5'>
@@ -175,12 +176,26 @@
 </script>
 
 <script type='text/x-handlebars' data-template-name='_reviews'>
-
     {{#each reviews}}
-              <li><p>{{text}}</p></li>
-            {{else}}
-              <li><p class='text-muted'><em>No reviews yet. Be the first to write one!</em></p></li>
-            {{/each}}
+        <div class='col-sm-12'>
+            <li><p class='rev-text'>{{text}} </p></li>
+            <p class='rev-date'>Reviewed At : <em>{{reviewedAt}}</em> <br></p>
+        </div>
+    {{else}}
+       <li><p class='text-muted'><em>No reviews yet. Be the first to write one!</em></p></li>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='reviews'>
+    {{#each reviews}}
+        <div class='col-sm-12'>
+            <li><p class='rev-text'>{{text}} </p></li>
+            <p class='rev-date'>Reviewed At : <em>{{reviewedAt}}</em> <br></p>
+        </div>
+    {{else}}
+       <li><p class='text-muted'><em>No reviews yet. Be the first to write one!</em></p></li>
+    {{/each}}
 </script>
 
 <script type='text/x-handlebars' data-template-name='products/index'>
@@ -264,14 +279,15 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="components/product-details">
-
     {{#if hasReviews}}
         <p class ='text-muted'> &nbsp Read all reviews ({{reviewsCount}}).</p>
      {{else}}
         <p class ='text-muted'> <em> &nbsp No reviews yet!! </em> </p>
     {{/if}}
-
 </script>
+
+
+
 </body>
 
 </html>

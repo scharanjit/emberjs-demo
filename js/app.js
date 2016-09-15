@@ -5,7 +5,7 @@ var App = Ember.Application.create({
 App.Router.map(function () {
     this.route('credits', {path: '/thanks'});
     this.resource('products', function () {
-        this.resource('product', {path: '/:product_id'});                 //dyanmic routing
+        this.resource('product', {path: '/:product_id'});                 //dynamic routing
         this.route('onsale');                                              //will be accessing it from inside product page..Kinda new page!!
         this.route('deals');
     });
@@ -41,6 +41,12 @@ App.ContactsController = Ember.ArrayController.extend({
     sortProperties: ['name'],
     contactsCount: Ember.computed.alias('length')
 });
+
+App.ReviewsController=Ember.ArrayController.extend({
+    sortProperties:['reviewedAt'],
+    sortAscending:false
+});
+
 
 
 App.ProductsRoute = Ember.Route.extend({
@@ -86,6 +92,9 @@ App.ProductDetailsComponent=Ember.Component.extend({
         return this.get('reviewsCount')>0;
     }.property('reviewsCount')
 });
+
+
+
 
 App.ApplicationAdapter = DS.FixtureAdapter.extend();                //to load records from the memory,also allow us to hard code the data in fixtures for getting started
 // App.ApplicationAdapter=DS.RESTAdaptor.extend();                //to communicate with HTTP server using JSON
@@ -208,22 +217,27 @@ App.Review = DS.Model.extend({
 App.Review.FIXTURES = [
     {
         id: 100,
-        text: "It was so delicious and juicy!"
+        text: "It was so delicious and juicy!",
+        reviewedAt:'28/06/2016'
     },
     {
         id: 101,
-        text: "Fresh and awesome!!"
+        text: "Fresh and awesome!!",
+        reviewedAt:'29/06/2016'
     },
     {
         id: 102,
-        text: "Amazing product!!"
+        text: "Amazing product!!",
+        reviewedAt:'30/06/2016'
     },
     {
         id: 103,
-        text: "Fresh & pure!!"
+        text: "Fresh & pure!!",
+        reviewedAt:'01/07/2016'
     },
     {
         id: 104,
-        text: "Delicious ,sweet & good!!"
+        text: "Delicious ,sweet & good!!",
+        reviewedAt:'01/06/2016'
     }
 ];
