@@ -48,26 +48,21 @@ App.ReviewsController=Ember.ArrayController.extend({
 });
 
 App.ProductController=Ember.ObjectController.extend({
-    text:'',
+    review:function () {
+        return this.store.createRecord('review', {
+            reviews:this.get('model')
+        });
+    }.property('model'),
     actions:{
         createReview:function () {
-            console.log('createReview called');
-
-            var review=this.store.createRecord('review',{
-                text:this.get('text'),
-                product:this.get('model'),
-                reviewedAt: new Date()
-            });
-
             var controller=this;
-
-            review.save().then(function(review){
-                controller.set('text','reviewedAt');
+            this.get('review').set('reviewedAt',new Date());
+            this.get('review').save().then(function(review){
                 controller.get('model.reviews').addObject(review);
             });
         }
-
-    }
+    },
+    isNotReviewed:Ember.computed.alias('review.isNew')
 });
 
 

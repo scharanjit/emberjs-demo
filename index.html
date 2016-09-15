@@ -164,17 +164,19 @@
             <p>Finely Artisan by {{#link-to 'contact' artisan}}{{artisan.name}}{{/link-to}}.</p>
             <h3>Reviews</h3>
             <ul>
-                {{partial 'reviews'}}
+                {{render 'reviews' reviews}}
 
             </ul>
-            <div class='new-review'>
-                <h3> Review {{title}}</h3>
-                {{#if text}}
-                    <p class='text-muted'>{{text}}</p>
-                {{/if}}
-                {{textarea valueBinding='text'}}
-                <button {{action 'createReview'}} class='btn-primary'>Review</button>
-             </div>
+            {{#if isNotReviewed}}
+                <div class='new-review'>
+                    <h3> Review {{title}}</h3>
+                    {{#if review.text}}
+                        <p class='text-muted'>{{review.text}}</p>
+                    {{/if}}
+                    {{textarea valueBinding='review.text'}}
+                    <button {{action 'createReview'}} class='btn-primary'>Review</button>
+                 </div>
+             {{/if}}
           </div>
 
           <div class='col-sm-5'>
@@ -184,23 +186,10 @@
 
 </script>
 
-<script type='text/x-handlebars' data-template-name='_reviews'>
-    {{#each reviews}}
-        <div class='col-sm-12'>
-            <li><p class='rev-text'>{{text}} </p></li>
-            <p class='rev-date'>Reviewed At : <em>{{reviewedAt}}</em> <br></p>
-        </div>
-    {{else}}
-       <li><p class='text-muted'><em>No reviews yet. Be the first to write one!</em></p></li>
-    {{/each}}
-
-</script>
-
 <script type="text/x-handlebars" data-template-name='reviews'>
-    {{#each reviews}}
+    {{#each}}
         <div class='col-sm-12'>
             <li><p class='rev-text'>{{text}} </p></li>
-            <p class='rev-date'>Reviewed At : <em>{{reviewedAt}}</em> <br></p>
         </div>
     {{else}}
        <li><p class='text-muted'><em>No reviews yet. Be the first to write one!</em></p></li>
