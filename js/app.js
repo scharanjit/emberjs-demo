@@ -47,6 +47,29 @@ App.ReviewsController=Ember.ArrayController.extend({
     sortAscending:false
 });
 
+App.ProductController=Ember.ObjectController.extend({
+    text:'',
+    actions:{
+        createReview:function () {
+            console.log('createReview called');
+
+            var review=this.store.createRecord('review',{
+                text:this.get('text'),
+                product:this.get('model'),
+                reviewedAt: new Date()
+            });
+
+            var controller=this;
+
+            review.save().then(function(review){
+                controller.set('text','reviewedAt');
+                controller.get('model.reviews').addObject(review);
+            });
+        }
+
+    }
+});
+
 
 
 App.ProductsRoute = Ember.Route.extend({
@@ -218,26 +241,26 @@ App.Review.FIXTURES = [
     {
         id: 100,
         text: "It was so delicious and juicy!",
-        reviewedAt:'28/06/2016'
+        reviewedAt:'2016-06-28'
     },
     {
         id: 101,
         text: "Fresh and awesome!!",
-        reviewedAt:'29/06/2016'
+        reviewedAt:'2016-06-29'
     },
     {
         id: 102,
         text: "Amazing product!!",
-        reviewedAt:'30/06/2016'
+        reviewedAt:'2016-06-30'
     },
     {
         id: 103,
         text: "Fresh & pure!!",
-        reviewedAt:'01/07/2016'
+        reviewedAt:'2016-06-12'
     },
     {
         id: 104,
         text: "Delicious ,sweet & good!!",
-        reviewedAt:'01/06/2016'
+        reviewedAt:'2016-06-08'
     }
 ];
