@@ -16,8 +16,10 @@ This is a practise project using EmberJS 1.10.1.
 6.) Resource Routes
 7.) Dyanmic Routes
 8.) Fixtures
-9.)Components
+9.) Components
 10.) Partials
+11.) Render
+12.) Actions
 
 
 ```
